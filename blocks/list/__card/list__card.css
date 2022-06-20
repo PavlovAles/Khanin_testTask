@@ -1,3 +1,6 @@
 .list__card {
-	
+	padding: 15px;
+  background-color: #36ECF8;
+  border-radius: 2px;
+  box-shadow: 0 0 5px gray;
 }

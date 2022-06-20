@@ -1,3 +1,6 @@
 .content {
-
+  margin: 0 43px 0 117px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 15px;
 }

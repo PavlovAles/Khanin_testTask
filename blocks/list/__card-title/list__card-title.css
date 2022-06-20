@@ -1,3 +1,7 @@
 .list__card-title {
-	
+	margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.14;
+  font-weight: 700;
+  text-align: center;
 }
