@@ -1,5 +1,14 @@
 .header__date {
   width: 77px;
   height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  line-height: .8;
   background-color: #05ABF6;
+  color: white;
+  box-shadow: 0 0 5px gray;
+  transform: skewY(-1deg);
 }
