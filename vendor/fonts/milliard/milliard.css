@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Milliard";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Milliard Medium"),
+    url("Rene Bieder  Milliard Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Milliard";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Milliard SemiBold"),
+    url("Rene Bieder  Milliard SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Milliard";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Milliard Bold"),
+    url("Rene Bieder  Milliard Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Milliard";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Milliard ExtraBold"),
+    url("Rene Bieder  Milliard ExtraBold.woff") format("woff");
+}
