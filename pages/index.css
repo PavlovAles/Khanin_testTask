@@ -18,6 +18,7 @@
 @import url(../blocks/list/__card/list__card.css);
 @import url(../blocks/list/__card-title/list__card-title.css);
 @import url(../blocks/list/__card-text/list__card-text.css);
+@import url(../blocks/list/__card-text/_animate/list__card-text_animate.css);
 
 /*--- HEADER ---*/
 
