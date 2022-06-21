@@ -1,4 +1,6 @@
 export default class Card {
+  static themesColors = {};
+
   constructor(data, templateSelector) {
     this._data = data;
     this._templateSelector = templateSelector;
@@ -6,9 +8,11 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.list__card-title').textContent = this._data.theme;
-    this._element.querySelector('.list__card-text').textContent = this._data.sourceText;
-    this._element.style.backgroundColor = `rgb(${this._randomizeColor()})`
+    this._element.querySelector(".list__card-title").textContent =
+      this._data.theme;
+    this._element.querySelector(".list__card-text").textContent =
+      this._data.sourceText;
+    this._element.style.backgroundColor = this._getThemeColor();
     return this._element;
   }
 
@@ -17,14 +21,23 @@ export default class Card {
       .querySelector(this._templateSelector)
       .content.querySelector(".list__card")
       .cloneNode(true);
-    }
+  }
 
-  _randomizeColor(){
-    const codes = [102, 204];
-    const color = [0,0,0];
-    color[Math.floor(Math.random() * 2)] = 102;
-    color[Math.floor(Math.random() * 2)] = 204;
-    console.log(color)
-    return color.join();
+  _getThemeColor() {
+    const color = this._randomizeColor();
+    if (!(this._data.theme in Card.themesColors)) {
+      Card.themesColors[this._data.theme] = color;
+    }
+    return Card.themesColors[this._data.theme];
+  }
+
+  _randomizeColor() {
+    let color = [
+      100 + Math.floor(Math.random() * 100),
+      100 + Math.floor(Math.random() * 100),
+      100 + Math.floor(Math.random() * 100)
+    ];
+    color = `rgb(${color.join()})`;
+    return color;
   }
 }
