@@ -1,19 +1,41 @@
 export default class Card {
   static themesColors = {};
 
-  constructor(data, templateSelector) {
-    this._data = data;
+  constructor(cardInfo, templateSelector) {
+    this._cardInfo = cardInfo;
     this._templateSelector = templateSelector;
+    this._trasnlated = false;
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".list__card-title").textContent =
-      this._data.theme;
-    this._element.querySelector(".list__card-text").textContent =
-      this._data.sourceText;
+    this._title = this._element.querySelector(".list__card-title");
+    this._text = this._element.querySelector(".list__card-text");
+
+    this._title.textContent = this._cardInfo.theme;
+    this._text.textContent = this._cardInfo.sourceText;
     this._element.style.backgroundColor = this._getThemeColor();
+
+    this._setEventListeners();
+
     return this._element;
+  }
+
+  _setEventListeners() {
+    this._element.addEventListener("click", () => this._translate());
+    this._element.addEventListener("dblclick", () => this._delete());
+  }
+
+  _translate() {
+    this._trasnlated = !this._trasnlated;
+    this._trasnlated
+      ? (this._text.textContent = this._cardInfo.translation)
+      : (this._text.textContent = this._cardInfo.sourceText);
+  }
+
+  _delete() {
+    this._element.remove();
+    this._element = null;
   }
 
   _getTemplate() {
@@ -25,17 +47,17 @@ export default class Card {
 
   _getThemeColor() {
     const color = this._randomizeColor();
-    if (!(this._data.theme in Card.themesColors)) {
-      Card.themesColors[this._data.theme] = color;
+    if (!(this._cardInfo.theme in Card.themesColors)) {
+      Card.themesColors[this._cardInfo.theme] = color;
     }
-    return Card.themesColors[this._data.theme];
+    return Card.themesColors[this._cardInfo.theme];
   }
 
   _randomizeColor() {
     let color = [
       100 + Math.floor(Math.random() * 100),
       100 + Math.floor(Math.random() * 100),
-      100 + Math.floor(Math.random() * 100)
+      100 + Math.floor(Math.random() * 100),
     ];
     color = `rgb(${color.join()})`;
     return color;
