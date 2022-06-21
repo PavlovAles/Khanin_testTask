@@ -28,9 +28,17 @@ export default class Card {
 
   _translate() {
     this._trasnlated = !this._trasnlated;
-    this._trasnlated
-      ? (this._text.textContent = this._cardInfo.translation)
-      : (this._text.textContent = this._cardInfo.sourceText);
+    if (this._trasnlated) {
+      this._text.textContent = this._cardInfo.translation;
+      setTimeout(() => this._revertTranslation(), 4000);
+    }
+    else {
+      this._text.textContent = this._cardInfo.sourceText;
+    }
+  }
+
+  _revertTranslation() {
+    this._text.textContent = this._cardInfo.sourceText;
   }
 
   _delete() {
