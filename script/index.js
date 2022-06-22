@@ -3,7 +3,7 @@ import Content from "../components/Content.js";
 import DateBlock from "../components/DateBlock.js";
 
 const date = new DateBlock(".date");
-date.updateDate()
+date.updateDate();
 
 fetch("./phrases.json")
   .then((res) => {
@@ -22,5 +22,8 @@ fetch("./phrases.json")
       containerSelector: ".content",
     });
     content.renderCards();
+
+    const btnRandomize = document.querySelector(".btn-randomize");
+    btnRandomize.addEventListener("click", () => content.randomize());
   })
   .catch((err) => console.log(err));
