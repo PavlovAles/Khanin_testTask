@@ -40,6 +40,7 @@ export default class Card {
 
   _revertTranslation() {
     if (this._trasnlated) {
+      this._trasnlated = false;
       this._text.textContent = this._cardInfo.sourceText;
       this._animateTranslation();
     }
