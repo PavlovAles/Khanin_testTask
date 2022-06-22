@@ -24,6 +24,9 @@
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__title/header__title.css);
-@import url(../blocks/header/__date/header__date.css);
-@import url(../blocks/header/__date-day/header__date-day.css);
-@import url(../blocks/header/__date-month/header__date-month.css);
+
+/*--- DATE ---*/
+
+@import url(../blocks/date/date.css);
+@import url(../blocks/date/__day/date__day.css);
+@import url(../blocks/date/__month/date__month.css);

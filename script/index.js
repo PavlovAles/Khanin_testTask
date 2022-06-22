@@ -1,7 +1,11 @@
 import Card from "../components/Card.js";
 import Content from "../components/Content.js";
+import DateBlock from "../components/DateBlock.js";
 
-const initialData = fetch("./phrases.json")
+const date = new DateBlock(".date");
+date.updateDate()
+
+fetch("./phrases.json")
   .then((res) => {
     if (res.ok) {
       return res.json();
@@ -15,7 +19,7 @@ const initialData = fetch("./phrases.json")
         const card = new Card(cardInfo, "#card-template");
         return card.generateCard();
       },
-      containerSelector: '.content'
+      containerSelector: ".content",
     });
     content.renderCards();
   })
