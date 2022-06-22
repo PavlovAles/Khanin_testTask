@@ -1,0 +1,10 @@
+.main {
+  margin: 0 43px 50px 117px;
+}
+
+@media (max-width: 600px) {
+  .main {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

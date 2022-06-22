@@ -1,0 +1,22 @@
+.btn-randomize {
+  margin: 0 auto 15px;
+  padding: 5px;
+  background-color: #05abf6;
+  color: white;
+  font-size: 18px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px gray;
+  transition: all 0.3s ease;
+
+}
+
+.btn-randomize:hover {
+  transform: scale(1.03);
+}
+
+.btn-randomize:active {
+  transform: scale(.97);
+}
+

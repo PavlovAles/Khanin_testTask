@@ -3,7 +3,7 @@ export default class Content {
     this._data = data;
     this._renderer = cardRenderer;
     this._container = document.querySelector(containerSelector);
-    this._lists = this._container.children;
+    this._lists = Array.from(this._container.children);
   }
 
   renderCards() {
@@ -20,6 +20,11 @@ export default class Content {
       });
       arrayOfCardsData = [];
     }
+  }
+
+  randomize() {
+    this._lists.forEach(list => list.innerHTML = '')
+    this.renderCards();
   }
 
   setItem(item) {
