@@ -1,3 +1,4 @@
+import './index.css';
 import Card from "../components/Card.js";
 import Content from "../components/Content.js";
 import DateBlock from "../components/DateBlock.js";

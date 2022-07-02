@@ -1,3 +1,5 @@
 .editorconfig
 .ds_store
 .vscode
+node_modules
+dist
