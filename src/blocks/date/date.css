@@ -1,7 +1,6 @@
 .date {
   width: 77px;
   height: 72px;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

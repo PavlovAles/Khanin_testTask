@@ -9,7 +9,7 @@ import 'flatpickr/dist/themes/light.css';
 const date = new DateBlock(".date");
 date.updateDate();
 
-const datePickr = document.querySelector('#flatpickr');
+const datePickr = document.querySelector('.date');
 
 const config = {
   dateFormat: 'j M'
