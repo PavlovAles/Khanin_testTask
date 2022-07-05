@@ -2,10 +2,11 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/light.css";
 
 export default class DateBlock {
-  constructor(dateBlockSelector) {
+  constructor({ dateBlockSelector, updateHandler }) {
     this._dateBlock = document.querySelector(dateBlockSelector);
     this._day = this._dateBlock.querySelector(".date__day");
     this._month = this._dateBlock.querySelector(".date__month");
+    this.updateHandler = updateHandler;
 
     this._flatpickr = flatpickr(this._dateBlock, {});
     this._flatpickr.setDate(new Date());
@@ -23,6 +24,6 @@ export default class DateBlock {
   }
 
   _setListener() {
-    this._dateBlock.addEventListener("change", () => this.updateDate());
+    this._dateBlock.addEventListener("change", () => this.updateHandler());
   }
 }
