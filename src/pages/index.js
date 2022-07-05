@@ -3,8 +3,19 @@ import Card from "../components/Card.js";
 import Content from "../components/Content.js";
 import DateBlock from "../components/DateBlock.js";
 
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/themes/light.css';
+
 const date = new DateBlock(".date");
 date.updateDate();
+
+const datePickr = document.querySelector('#flatpickr');
+
+const config = {
+  dateFormat: 'j M'
+};
+const fp = flatpickr(datePickr, config);
+datePickr.addEventListener('change', () => console.log(fp.selectedDates))
 
 fetch("/api/phrases", { method: 'GET'})
   .then((res) => {
