@@ -6,7 +6,7 @@ import DateBlock from "../components/DateBlock.js";
 const date = new DateBlock(".date");
 date.updateDate();
 
-fetch("./phrases.json")
+fetch("/api/phrases", { method: 'GET'})
   .then((res) => {
     if (res.ok) {
       return res.json();
