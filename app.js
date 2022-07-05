@@ -3,10 +3,17 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 
-let rawdata = fs.readFileSync('phrases.json');
+const rawdata = fs.readFileSync('phrases.json');
+const data = JSON.parse(rawdata);
+
+function getPhrases(date) {
+  const fdate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  return data.filter(a => a.date === fdate)[0].phrases;
+}
 
 app.get('/api/phrases', (req, res) => {
-  res.send(rawdata);
+  const reqDate = new Date(+req.query.date);
+  res.send(getPhrases(reqDate));
 });
 
 app.use(express.static(path.resolve(__dirname, 'dist')));
