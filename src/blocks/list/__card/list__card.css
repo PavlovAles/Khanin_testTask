@@ -4,6 +4,7 @@
   border-radius: 2px;
   box-shadow: 0 0 5px gray;
   cursor: pointer;
+  user-select: none;
   transition: all 0.3s ease;
 }
 
