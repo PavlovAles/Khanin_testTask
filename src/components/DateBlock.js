@@ -2,15 +2,14 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/light.css";
 
 export default class DateBlock {
-  constructor({ dateBlockSelector, updateHandler }) {
+  constructor({ dateBlockSelector, availableDates, updateHandler }) {
     this._dateBlock = document.querySelector(dateBlockSelector);
     this._day = this._dateBlock.querySelector(".date__day");
     this._month = this._dateBlock.querySelector(".date__month");
+    this._avalibleDates = availableDates;
     this.updateHandler = updateHandler;
 
-    this._flatpickr = flatpickr(this._dateBlock, {});
-    this._flatpickr.setDate(new Date());
-
+    this._createFlatpickr();
     this._setListener();
   }
 
@@ -21,6 +20,15 @@ export default class DateBlock {
     this._month.textContent = date.toLocaleString("en", { month: "short" });
 
     return +date;
+  }
+
+  _createFlatpickr() {
+    const config = {
+      minDate: this._avalibleDates.min,
+      maxDate: this._avalibleDates.max
+    }
+    this._flatpickr = flatpickr(this._dateBlock, config);
+    this._flatpickr.setDate(new Date());
   }
 
   _setListener() {

@@ -11,28 +11,44 @@ const content = new Content({
   containerSelector: ".content",
 });
 
-const date = new DateBlock({
-  dateBlockSelector: ".date",
-  updateHandler: () => {
-    fetch(`/api/phrases?date=${date.updateDate()}`, {
-      method: "GET",
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
+function initDate(availableDates) {
+  const date = new DateBlock({
+    dateBlockSelector: ".date",
+    availableDates,
+    updateHandler: () => {
+      fetch(`/api/phrases?date=${date.updateDate()}`, {
+        method: "GET",
       })
-      .then((cards) => {
-        content.setCards(cards);
-        content.renderCards();
-      })
-      .catch((err) => {
-        console.log(err);
-        content.eraseCards()
-      });
-  }
-});
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        })
+        .then((cards) => {
+          content.setCards(cards);
+          content.renderCards();
+        })
+        .catch((err) => {
+          console.log(err);
+          content.eraseCards();
+        });
+    },
+  });
 
-date.updateHandler()
+  date.updateHandler();
+}
 
+fetch(`/api/dates`, {
+  method: "GET",
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  })
+  .then((res) => initDate(res.availableDates))
+  .catch((err) => {
+    console.log(err);
+  });
