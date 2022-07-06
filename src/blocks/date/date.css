@@ -13,4 +13,5 @@
   color: white;
   box-shadow: 0 0 5px gray;
   transform: skewY(-1deg);
+  cursor: pointer;
 }

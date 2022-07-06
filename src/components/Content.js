@@ -1,9 +1,11 @@
 export default class Content {
-  constructor( {data, cardRenderer, containerSelector} ) {
-    this._data = data;
+  constructor( {cardRenderer, containerSelector} ) {
     this._renderer = cardRenderer;
     this._container = document.querySelector(containerSelector);
     this._lists = Array.from(this._container.children);
+
+    this._errorMessage = document.createElement('p');
+    this._errorMessage.textContent = 'No phrases for today :( Choose another date';
   }
 
   renderCards() {
@@ -11,7 +13,7 @@ export default class Content {
     let arrayOfCardsData = [];
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 5; j++) {
-        arrayOfCardsData.push(this._data[i * 5 + j]);
+        arrayOfCardsData.push(this._cards[i * 5 + j]);
       }
       this._sortArrayByLength(arrayOfCardsData);
       arrayOfCardsData.forEach((item) => {
@@ -22,25 +24,30 @@ export default class Content {
     }
   }
 
-  randomize() {
-    this._lists.forEach(list => list.innerHTML = '')
-    this.renderCards();
+  setCards(cards) {
+    this._eraseLists();
+    this._cards = cards;
   }
 
-  setItem(item) {
-    this._container.prepend(item);
+  eraseCards() {
+    this._eraseLists();
+    this._lists[0].appendChild(this._errorMessage)
+  }
+
+  _eraseLists() {
+    this._lists.forEach(list => list.innerHTML = '');
   }
 
   _shuffleData() {
-    let currenIndex = this._data.length;
+    let currenIndex = this._cards.length;
     let randomIndex;
 
     while (currenIndex) {
       randomIndex = Math.floor(Math.random() * currenIndex);
       currenIndex--;
-      [this._data[currenIndex], this._data[randomIndex]] = [
-        this._data[randomIndex],
-        this._data[currenIndex],
+      [this._cards[currenIndex], this._cards[randomIndex]] = [
+        this._cards[randomIndex],
+        this._cards[currenIndex],
       ];
     }
   }
