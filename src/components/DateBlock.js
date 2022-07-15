@@ -14,8 +14,10 @@ export default class DateBlock {
   }
 
   updateDate() {
-    const date = new Date(this._flatpickr.selectedDates[0]);
-
+    let date = new Date(this._flatpickr.selectedDates[0]);
+    if (isNaN(date)) {
+      date = new Date();
+    }
     this._day.textContent = date.getDate();
     this._month.textContent = date.toLocaleString("en", { month: "short" });
 
