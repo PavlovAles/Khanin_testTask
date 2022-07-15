@@ -5,7 +5,8 @@ export default class Content {
     this._lists = Array.from(this._container.children);
 
     this._errorMessage = document.createElement('p');
-    this._errorMessage.textContent = 'No phrases for today :( Choose another date';
+    this._errorMessage.style.whiteSpace = 'pre';
+    this._errorMessage.textContent = 'No phrases for today :( \r\nChoose another date';
   }
 
   renderCards() {
